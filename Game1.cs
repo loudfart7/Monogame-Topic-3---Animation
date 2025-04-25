@@ -47,7 +47,7 @@ namespace Monogame_Topic_3___Animation
             _graphics.ApplyChanges();
 
             tribbleBrownRect = new Rectangle(300, 10, 100, 100);
-            tribbleBrownSpeed = new Vector2(2, 2);
+            tribbleBrownSpeed = new Vector2(2, 4);
 
             tribbleGreyRect = new Rectangle(300,10,100,100);
             tribbleGreySpeed = new Vector2(2, 2);
@@ -72,10 +72,23 @@ namespace Monogame_Topic_3___Animation
             tribbleGreyRect.X += (int)tribbleGreySpeed.X;
             if (tribbleGreyRect.Right >= window.Width || tribbleGreyRect.Left <= 0)
                 tribbleGreySpeed.X *= -1;
-
             tribbleGreyRect.Y += (int)tribbleGreySpeed.Y;
             if (tribbleGreyRect.Bottom >= window.Height || tribbleGreyRect.Top <= 0)
                 tribbleGreySpeed.Y *= -1;
+
+            tribbleBrownRect.X += (int)tribbleBrownSpeed.X;
+            if (tribbleBrownRect.Right >= window.Width || tribbleBrownRect.Left <= 0)
+                tribbleBrownSpeed.X *= -1;
+            tribbleBrownRect.Y += (int)tribbleBrownSpeed.Y;
+            if (tribbleBrownRect.Bottom >= window.Height || tribbleBrownRect.Top <= 0)
+                tribbleBrownSpeed.Y *= -1;
+
+            tribbleCreamRect.X += (int)tribbleCreamSpeed.X;
+            if (tribbleCreamRect.Right >= window.Width || tribbleCreamRect.Left <= 0)
+                tribbleCreamSpeed.X *= -1;
+            tribbleCreamRect.Y += (int)tribbleCreamSpeed.Y;
+            if (tribbleCreamRect.Bottom >= window.Height || tribbleCreamRect.Top <= 0)
+                tribbleCreamSpeed.Y *= -1;
 
             base.Update(gameTime);
         }
