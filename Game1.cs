@@ -30,7 +30,6 @@ namespace Monogame_Topic_3___Animation
         Rectangle tribbleOrangeRect;
         Vector2 tribbleOrangeSpeed;
 
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -46,11 +45,17 @@ namespace Monogame_Topic_3___Animation
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
 
-            tribbleBrownRect = new Rectangle(300, 10, 100, 100);
-            tribbleBrownSpeed = new Vector2(2, 4);
+            tribbleBrownRect = new Rectangle(generator.Next(700), generator.Next(400), 100, 100);
+            tribbleBrownSpeed = new Vector2(2, 0);
 
-            tribbleGreyRect = new Rectangle(300,10,100,100);
+            tribbleCreamRect = new Rectangle(generator.Next(700), generator.Next(400), 100, 100);
+            tribbleCreamSpeed = new Vector2(0, 2);
+
+            tribbleGreyRect = new Rectangle(generator.Next(700), generator.Next(400), 100, 100);
             tribbleGreySpeed = new Vector2(2, 2);
+
+            tribbleOrangeRect = new Rectangle(generator.Next(700), generator.Next(400), 100, 100);
+            tribbleOrangeSpeed = new Vector2(2, 2);
 
             base.Initialize();
         }
@@ -60,7 +65,10 @@ namespace Monogame_Topic_3___Animation
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            tribbleBrownTexture = Content.Load<Texture2D>("tribbleBrown");
+            tribbleCreamTexture = Content.Load<Texture2D>("tribbleCream");
             tribbleGreyTexture = Content.Load<Texture2D>("tribbleGrey");
+            tribbleOrangeTexture = Content.Load<Texture2D>("tribbleOrange");
         }
 
         protected override void Update(GameTime gameTime)
@@ -69,16 +77,10 @@ namespace Monogame_Topic_3___Animation
                 Exit();
 
             // TODO: Add your update logic here
-            tribbleGreyRect.X += (int)tribbleGreySpeed.X;
-            if (tribbleGreyRect.Right >= window.Width || tribbleGreyRect.Left <= 0)
-                tribbleGreySpeed.X *= -1;
-            tribbleGreyRect.Y += (int)tribbleGreySpeed.Y;
-            if (tribbleGreyRect.Bottom >= window.Height || tribbleGreyRect.Top <= 0)
-                tribbleGreySpeed.Y *= -1;
 
             tribbleBrownRect.X += (int)tribbleBrownSpeed.X;
-            if (tribbleBrownRect.Right >= window.Width || tribbleBrownRect.Left <= 0)
-                tribbleBrownSpeed.X *= -1;
+            if (tribbleBrownRect.Left >= window.Width)
+                tribbleBrownRect.X = -tribbleBrownRect.Width;
             tribbleBrownRect.Y += (int)tribbleBrownSpeed.Y;
             if (tribbleBrownRect.Bottom >= window.Height || tribbleBrownRect.Top <= 0)
                 tribbleBrownSpeed.Y *= -1;
@@ -87,8 +89,22 @@ namespace Monogame_Topic_3___Animation
             if (tribbleCreamRect.Right >= window.Width || tribbleCreamRect.Left <= 0)
                 tribbleCreamSpeed.X *= -1;
             tribbleCreamRect.Y += (int)tribbleCreamSpeed.Y;
-            if (tribbleCreamRect.Bottom >= window.Height || tribbleCreamRect.Top <= 0)
-                tribbleCreamSpeed.Y *= -1;
+            if (tribbleCreamRect.Top >= window.Height)
+                tribbleCreamRect.Y = -tribbleCreamRect.Height;
+
+            tribbleGreyRect.X += (int)tribbleGreySpeed.X;
+            if (tribbleGreyRect.Right >= window.Width || tribbleGreyRect.Left <= 0)
+                tribbleGreySpeed.X *= -1;
+            tribbleGreyRect.Y += (int)tribbleGreySpeed.Y;
+            if (tribbleGreyRect.Bottom >= window.Height || tribbleGreyRect.Top <= 0)
+                tribbleGreySpeed.Y *= -1;
+
+            tribbleOrangeRect.X += (int)tribbleOrangeSpeed.X;
+            if (tribbleOrangeRect.Right >= window.Width || tribbleOrangeRect.Left <= 0)
+                tribbleOrangeSpeed.X *= -1;
+            tribbleOrangeRect.Y += (int)tribbleOrangeSpeed.Y;
+            if (tribbleOrangeRect.Bottom >= window.Height || tribbleOrangeRect.Top <= 0)
+                tribbleOrangeSpeed.Y *= -1;
 
             base.Update(gameTime);
         }
@@ -100,7 +116,10 @@ namespace Monogame_Topic_3___Animation
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
+            _spriteBatch.Draw(tribbleBrownTexture, tribbleBrownRect, Color.White);
+            _spriteBatch.Draw(tribbleCreamTexture, tribbleCreamRect, Color.White);
             _spriteBatch.Draw(tribbleGreyTexture, tribbleGreyRect, Color.White);
+            _spriteBatch.Draw(tribbleOrangeTexture, tribbleOrangeRect, Color.White);
 
             _spriteBatch.End();
 
