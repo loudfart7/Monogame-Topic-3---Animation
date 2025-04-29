@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace Monogame_Topic_3___Animation
 {
@@ -12,6 +13,7 @@ namespace Monogame_Topic_3___Animation
 
         Random generator = new Random();
 
+        Texture2D backgroundTexture;
         Rectangle window;
 
         Texture2D tribbleBrownTexture;
@@ -29,6 +31,21 @@ namespace Monogame_Topic_3___Animation
         Texture2D tribbleOrangeTexture;
         Rectangle tribbleOrangeRect;
         Vector2 tribbleOrangeSpeed;
+
+
+
+        List<Texture2D> backgroundTextures;
+
+        Texture2D background1;
+        Rectangle background1Rect;
+
+        Texture2D background2;
+        Rectangle background1Rect2;
+
+        Texture2D background3;
+        Rectangle background1Rect3;
+
+
 
         public Game1()
         {
@@ -57,6 +74,11 @@ namespace Monogame_Topic_3___Animation
             tribbleOrangeRect = new Rectangle(generator.Next(700), generator.Next(400), 100, 100);
             tribbleOrangeSpeed = new Vector2(2, 2);
 
+            
+
+            backgroundTextures = new List<Texture2D>();
+            generator = new Random();
+
             base.Initialize();
         }
 
@@ -69,6 +91,7 @@ namespace Monogame_Topic_3___Animation
             tribbleCreamTexture = Content.Load<Texture2D>("tribbleCream");
             tribbleGreyTexture = Content.Load<Texture2D>("tribbleGrey");
             tribbleOrangeTexture = Content.Load<Texture2D>("tribbleOrange");
+
         }
 
         protected override void Update(GameTime gameTime)
